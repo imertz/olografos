@@ -6,6 +6,9 @@ export class Olografos {
   }
 
   static val(num: number): string {
+    if (typeof num !== 'number') {
+      throw new TypeError('Please enter a number')
+    }
     if (num < 0) {
       throw new TypeError('Please enter a valid number')
     }

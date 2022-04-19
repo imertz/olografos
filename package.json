@@ -1,6 +1,6 @@
 {
-  "name": "my-prototype-module",
-  "version": "0.2.2",
+  "name": "olografos",
+  "version": "0.1.2",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -43,13 +43,13 @@
   ],
   "author": "Ioannis Mertzanis <imertz@protonmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/tomchen/example-typescript-package",
+  "homepage": "https://github.com/imertz/olografos.git",
   "repository": {
     "type": "git",
-    "url": "git@github.com:tomchen/example-typescript-package.git"
+    "url": "git@github.com:imertz/olografos.git"
   },
   "bugs": {
-    "url": "https://github.com/tomchen/example-typescript-package/issues"
+    "url": "https://github.com/imertz/olografos.git/issues"
   },
   "dependencies": {},
   "devDependencies": {
