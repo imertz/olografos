@@ -1,13 +1,22 @@
-import { Num } from '../src/index'
+import { Olografos } from '../src/index'
 
-test('add', () => {
-  expect(new Num(5).add(new Num(6)).val()).toBe(11)
+test('val', () => {
+  const t = () => {
+    throw new TypeError('Please enter a valid number')
+  }
+
+  expect(Olografos.val(5)).toBe('πέντε')
+  expect(Olografos.val(200)).toBe('διακόσια')
+  expect(Olografos.val(3)).toBe('τρία')
+  expect(() => {
+    Olografos.val(-1)
+  }).toThrow('Please enter a valid number')
 })
 
-test('toString', () => {
-  expect(new Num(5).toString()).toBe('5')
-})
+// test('toString', () => {
+//   expect(new Num(5).toString()).toBe('5')
+// })
 
-test('addAll', () => {
-  expect(Num.addAll([new Num(5), new Num(2), new Num(13)]).val()).toBe(20)
-})
+// test('addAll', () => {
+//   expect(Num.addAll([new Num(5), new Num(2), new Num(13)]).val()).toBe(20)
+// })

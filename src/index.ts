@@ -1,3 +1,3 @@
-import { Num } from './Num'
+import { Olografos } from './Olografos'
 
-export { Num }
+export { Olografos }
