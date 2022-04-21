@@ -1,6 +1,6 @@
 {
   "name": "olografos",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -51,7 +51,6 @@
   "bugs": {
     "url": "https://github.com/imertz/olografos.git/issues"
   },
-  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
