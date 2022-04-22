@@ -8,7 +8,6 @@ const defaultOptions: Options = {
   klisi: 'onomastiki',
   genos: 'oudetero',
 }
-console.log()
 
 function removePlusMinusSigns(numString: string) {
   let afterRemoval = numString
