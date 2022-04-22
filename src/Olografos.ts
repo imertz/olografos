@@ -8,7 +8,6 @@ const defaultOptions: Options = {
   klisi: 'onomastiki',
   genos: 'oudetero',
 }
-console.log()
 
 function removePlusMinusSigns(numString: string) {
   let afterRemoval = numString
@@ -48,8 +47,6 @@ export function Olografos(
   const numStr = removePlusMinusSigns(
     num.toString().includes('.') ? num.toString().split('.')[0] : num.toString()
   )
-  console.log(numStr)
-
   const digits = data[options.genos][options.klisi]
 
   function upToThreeDigits(num: number): string {
@@ -111,7 +108,6 @@ export function Olografos(
         fourDigitString = `${
           digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } ${digits.millions}`
-        console.log(fourDigitString)
       }
       if (numStr.length === 8) {
         const fourDigitNumber = numStr[0] + numStr[1]
@@ -144,7 +140,6 @@ export function Olografos(
         fourDigitString = `${
           digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } δις`
-        console.log(fourDigitString)
       }
       if (numStr.length === 11) {
         const fourDigitNumber = numStr[0] + numStr[1]
@@ -172,8 +167,6 @@ export function Olografos(
     finalString = upToThreeDigits(num).trim()
   }
   if (numStr.length > 3 && numStr.length <= 6) {
-    console.log(upToSixDigits(parseInt(numStr)))
-
     finalString = `${upToSixDigits(parseInt(numStr))} ${upToThreeDigits(
       parseInt(numStr.slice(-3))
     )}`.trim()
