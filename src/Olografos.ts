@@ -8,6 +8,7 @@ const defaultOptions: Options = {
   klisi: 'onomastiki',
   genos: 'oudetero',
 }
+console.log()
 
 function removePlusMinusSigns(numString: string) {
   let afterRemoval = numString
@@ -211,3 +212,5 @@ export function Olografos(
   }
   return finalString
 }
+
+console.log(JSON.stringify(Olografos(1)))
