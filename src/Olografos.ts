@@ -212,5 +212,3 @@ export function Olografos(
   }
   return finalString
 }
-
-console.log(JSON.stringify(Olografos(1)))
