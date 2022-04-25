@@ -3,8 +3,6 @@ import type { Options } from './types'
 
 const defaultOptions: Options = {
   currency: false,
-  ignoreDecimal: false,
-  ignoreZeroCurrency: false,
   klisi: 'onomastiki',
   genos: 'oudetero',
 }
@@ -20,7 +18,7 @@ function removePlusMinusSigns(numString: string) {
   return afterRemoval
 }
 
-export function Olografos(
+export function olografos(
   num: number,
   options: Options = defaultOptions
 ): string {
@@ -32,12 +30,7 @@ export function Olografos(
   if (!options.currency) {
     options.currency = false
   }
-  if (!options.ignoreDecimal) {
-    options.ignoreDecimal = false
-  }
-  if (!options.ignoreZeroCurrency) {
-    options.ignoreZeroCurrency = false
-  }
+
   if (!options.klisi) {
     options.klisi = 'onomastiki'
   }
@@ -46,9 +39,9 @@ export function Olografos(
   }
   const numStr = removePlusMinusSigns(
     num.toString().includes('.') ? num.toString().split('.')[0] : num.toString()
-  )
+  ).slice(-12)
   const digits = data[options.genos][options.klisi]
-
+  const oudetero = data.oudetero[options.klisi]
   function upToThreeDigits(num: number): string {
     let strToReturn = ''
     const numStr = num.toString()
@@ -106,20 +99,20 @@ export function Olografos(
       if (numStr.length === 7 && numStr[0] !== '1') {
         const fourDigitNumber = numStr[0]
         fourDigitString = `${
-          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+          oudetero.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } ${digits.millions}`
       }
       if (numStr.length === 8) {
         const fourDigitNumber = numStr[0] + numStr[1]
         fourDigitString = `${
-          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+          oudetero.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } ${digits.millions}`
       }
       if (numStr.length === 9) {
         const sixDigitNumber = numStr[0]
         const fourDigitNumber = numStr[1] + numStr[2]
-        fourDigitString = `${digits.tripleDigit[parseInt(sixDigitNumber)]} ${
-          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        fourDigitString = `${oudetero.tripleDigit[parseInt(sixDigitNumber)]} ${
+          oudetero.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } ${digits.millions}`
       }
 
@@ -138,20 +131,20 @@ export function Olografos(
       if (numStr.length === 10 && numStr[0] !== '1') {
         const fourDigitNumber = numStr[0]
         fourDigitString = `${
-          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+          oudetero.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } δις`
       }
       if (numStr.length === 11) {
         const fourDigitNumber = numStr[0] + numStr[1]
         fourDigitString = `${
-          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+          oudetero.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } δις`
       }
       if (numStr.length === 12) {
         const sixDigitNumber = numStr[0]
         const fourDigitNumber = numStr[1] + numStr[2]
-        fourDigitString = `${digits.tripleDigit[parseInt(sixDigitNumber)]} ${
-          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        fourDigitString = `${oudetero.tripleDigit[parseInt(sixDigitNumber)]} ${
+          oudetero.singleOrDoubleDigit[parseInt(fourDigitNumber)]
         } δις`
       }
 
