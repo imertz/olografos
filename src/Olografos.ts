@@ -40,6 +40,7 @@ export function olografos(
   const numStr = removePlusMinusSigns(
     num.toString().includes('.') ? num.toString().split('.')[0] : num.toString()
   ).slice(-12)
+
   const digits = data[options.genos][options.klisi]
   const oudetero = data.oudetero[options.klisi]
   function upToThreeDigits(num: number): string {
@@ -157,7 +158,7 @@ export function olografos(
     finalString = 'μηδέν'
   }
   if (numStr.length <= 3 && numStr !== '0') {
-    finalString = upToThreeDigits(num).trim()
+    finalString = upToThreeDigits(parseInt(numStr)).trim()
   }
   if (numStr.length > 3 && numStr.length <= 6) {
     finalString = `${upToSixDigits(parseInt(numStr))} ${upToThreeDigits(
@@ -184,6 +185,7 @@ export function olografos(
     if (floatStr.length === 1) {
       floatStr = num.toString().split('.')[1] + '0'
     }
+
     finalString = `${finalString} και ${
       data.oudetero[options.klisi].singleOrDoubleDigit[
         parseInt(floatStr[0] + floatStr[1])
@@ -204,3 +206,5 @@ export function olografos(
   }
   return finalString
 }
+
+console.log(olografos(1.45, { klisi: 'geniki' }))
