@@ -1,3 +1,3 @@
-import { Olografos } from './Olografos'
+import { olografos } from './Olografos'
 
-export { Olografos }
+export { olografos }
