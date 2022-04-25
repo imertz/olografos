@@ -45,52 +45,35 @@ lexis = olografos(123.45)
 // lexis = εκατόν είκοσι τρία και σαράντα πέντε εκατοστά
 ```
 
-_Note: When fractional part starts with zero, the digits after decimal points are converted into respective numbers individually_
-
-To convert to currency
+Για μετατροπή σε ευρώ
 
 ```js
-const toWords = new ToWords()
+let money = olografos(452, { currency: true })
+// money = τετρακόσια πενήντα δύο ευρώ
 
-let words = toWords.convert(452, { currency: true })
-// words = Four Hundred Fifty Two Rupees Only
-
-words = toWords.convert(452.36, { currency: true })
-// words = Four Hundred Fifty Two Rupees And Thirty Six Paise Only
+money = olografos(452.36, { currency: true })
+// money = τετρακόσια πενήντα δύο ευρώ και τριάντα έξι λεπτά
 ```
 
-To discard fractional unit
+Αλλαγή γένου και κλίσης
 
 ```js
-const toWords = new ToWords()
-
-let words = toWords.convert(452.36, { currency: true, ignoreDecimal: true })
-// words = Four Hundred Fifty Two Rupees Only
+let lexis = olografos(452, { klisi: 'aitiatiki', genos: 'thyliko' })
+// lexis = τετρακοσίες πενήντα δύο κα
 ```
 
-To ignore major currency number when it's zero
+Εκατοστά
 
 ```js
-const toWords = new ToWords()
-
-let words = toWords.convert(0.572, { currency: true, ignoreZeroCurrency: true })
-// words = Five Hundred Seventy Two Paise Only
+let words = olografos(1.57, { klisi: 'geniki' })
+// lexis = ενός και πενηνταεπτά εκατοστών
 ```
 
 ## Options
 
-| Επιλογή            | Type         | Default      | Description                                                                                                                                                              |
-| ------------------ | ------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| localeCode         | string       | 'en-IN'      | Locale code for selecting i18n.                                                                                                                                          |
-| currency           | boolean      | false        | Whether the number to be converted into words written as currency.<br/>_Note: When currency:true, number will be rounded off to two decimals before converting to words_ |
-| klisi              | 'onomastiki' | 'onomastiki' | Η κλίση στην οποία θα γραφεί ο αριθμός                                                                                                                                   |
-| ignoreZeroCurrency | boolean      | false        | Whether to ignore zero currency value while converting into words.                                                                                                       |
-| doNotAddOnly       | boolean      | false        | Do not add `only` at the end of the words. This works only when currency = true                                                                                          |
-
-## Inspiration for core logic
-
-[https://stackoverflow.com/a/46221860](https://stackoverflow.com/a/46221860)
-
-# Μετατροπή ενός αριθμού στην αντίστοιχη μορφή του ολογράφως
-
-Olografos(number) : Function που μετατρέπει τον εισαχθέντα αριθμό στην αντίστοιχη μορφή του ολογράφως
+| Επιλογή  | Type                                      | Default      | Description                                   |
+| -------- | ----------------------------------------- | ------------ | --------------------------------------------- |
+| currency | boolean                                   | false        | Μετατροπή του αριθμόυ σε μορφή ολογράφως ευρώ |
+| klisi    | 'onomastiki'<br/>'geniki'<br/>'aitiatiki' | 'onomastiki' | Η κλίση στην οποία θα γραφεί ο αριθμός        |
+| genos    | 'arseniko'<br/>'thyliko'<br/>'oudetero'   | 'oudetero'   | Το γένος στο οποίο θα γραφεί ο αριθμός        |
+|          |
