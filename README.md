@@ -59,13 +59,13 @@ money = olografos(452.36, { currency: true })
 
 ```js
 let lexis = olografos(452, { klisi: 'aitiatiki', genos: 'thyliko' })
-// lexis = τετρακοσίες πενήντα δύο κα
+// lexis = τετρακοσίες πενήντα δύο
 ```
 
 Εκατοστά
 
 ```js
-let words = olografos(1.57, { klisi: 'geniki' })
+let lexis = olografos(1.57, { klisi: 'geniki' })
 // lexis = ενός και πενηνταεπτά εκατοστών
 ```
 
@@ -76,4 +76,3 @@ let words = olografos(1.57, { klisi: 'geniki' })
 | currency | boolean                                   | false        | Μετατροπή του αριθμόυ σε μορφή ολογράφως ευρώ |
 | klisi    | 'onomastiki'<br/>'geniki'<br/>'aitiatiki' | 'onomastiki' | Η κλίση στην οποία θα γραφεί ο αριθμός        |
 | genos    | 'arseniko'<br/>'thyliko'<br/>'oudetero'   | 'oudetero'   | Το γένος στο οποίο θα γραφεί ο αριθμός        |
-|          |

@@ -1,6 +1,6 @@
 {
   "name": "olografos",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Μετατροπή αριθμών (και ευρώ) σε μορφή ολογράφως",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
