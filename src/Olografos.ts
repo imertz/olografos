@@ -206,5 +206,3 @@ export function olografos(
   }
   return finalString
 }
-
-console.log(olografos(1.45, { klisi: 'geniki' }))
