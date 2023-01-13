@@ -8,7 +8,6 @@ const defaultOptions: Options = {
   klisi: 'onomastiki',
   genos: 'oudetero',
 }
-console.log()
 
 function removePlusMinusSigns(numString: string) {
   let afterRemoval = numString
@@ -20,23 +19,13 @@ function removePlusMinusSigns(numString: string) {
   }
   return afterRemoval
 }
-function removePlusMinusSigns(numString: string) {
-  let afterRemoval = numString
-  if (numString.includes('-')) {
-    afterRemoval = numString.replace('-', '')
-  }
-  if (numString.includes('+')) {
-    afterRemoval = numString.replace('+', '')
-  }
-  return afterRemoval
-}
 
-export function Olografos(
+export function olografos(
   num: number,
   options: Options = defaultOptions
 ): string {
   if (typeof num !== 'number') {
-    throw new TypeError('Number inserted is not of type string')
+    throw new TypeError('Number inserted is not of type number')
   }
   let finalString = ''
   options = { ...options }
@@ -58,13 +47,16 @@ export function Olografos(
   const numStr = removePlusMinusSigns(
     num.toString().includes('.') ? num.toString().split('.')[0] : num.toString()
   )
-  console.log(numStr)
 
   const digits = data[options.genos][options.klisi]
 
   function upToThreeDigits(num: number): string {
     let strToReturn = ''
-    const numStr = num.toString()
+    const numStr = removePlusMinusSigns(
+      num.toString().includes('.')
+        ? num.toString().split('.')[0]
+        : num.toString()
+    )
     if (numStr.length === 3) {
       strToReturn = `${digits.tripleDigit[parseInt(numStr.split('')[0])]} ${
         digits.singleOrDoubleDigit[parseInt(numStr.slice(1, 3))]
@@ -78,7 +70,11 @@ export function Olografos(
   }
   function upToSixDigits(num: number): string {
     let strToReturn = ''
-    const numStr = num.toString()
+    const numStr = removePlusMinusSigns(
+      num.toString().includes('.')
+        ? num.toString().split('.')[0]
+        : num.toString()
+    )
     if (numStr.length > 3 && numStr.length < 7) {
       let fourDigitString = ''
       if (numStr.length === 4 && numStr[0] === '1') {
@@ -108,103 +104,78 @@ export function Olografos(
 
       return strToReturn
     }
-    function upToSixDigits(num: number): string {
-      let strToReturn = ''
-      const numStr = num.toString()
-      if (numStr.length > 3 && numStr.length < 7) {
-        let fourDigitString = ''
-        if (numStr.length === 4 && numStr[0] === '1') {
-          fourDigitString = digits.thousand
-        }
-        if (numStr.length === 4 && numStr[0] !== '1') {
-          const fourDigitNumber = numStr[0]
-          fourDigitString = `${
-            digits.fourOrFiveDigits[parseInt(fourDigitNumber)]
-          } ${digits.thousands}`
-        }
-        if (numStr.length === 5) {
-          const fourDigitNumber = numStr[0] + numStr[1]
-          fourDigitString = `${
-            digits.fourOrFiveDigits[parseInt(fourDigitNumber)]
-          } ${digits.thousands}`
-        }
-        if (numStr.length === 6) {
-          const sixDigitNumber = numStr[0]
-          const fourDigitNumber = numStr[1] + numStr[2]
-          fourDigitString = `${digits.sixDigits[parseInt(sixDigitNumber)]} ${
-            digits.fourOrFiveDigits[parseInt(fourDigitNumber)]
-          } ${digits.thousands}`
-        }
 
-        strToReturn = `${fourDigitString}`
+    return strToReturn
+  }
+
+  function upToNineDigits(num: number): string {
+    let strToReturn = ''
+    const numStr = removePlusMinusSigns(
+      num.toString().includes('.')
+        ? num.toString().split('.')[0]
+        : num.toString()
+    )
+    if (numStr.length > 6 && numStr.length < 10) {
+      let fourDigitString = ''
+      if (numStr.length === 7 && numStr[0] === '1') {
+        fourDigitString = digits.million
       }
-      return strToReturn
+      if (numStr.length === 7 && numStr[0] !== '1') {
+        const fourDigitNumber = numStr[0]
+        fourDigitString = `${
+          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        } ${digits.millions}`
+      }
+      if (numStr.length === 8) {
+        const fourDigitNumber = numStr[0] + numStr[1]
+        fourDigitString = `${
+          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        } ${digits.millions}`
+      }
+      if (numStr.length === 9) {
+        const sixDigitNumber = numStr[0]
+        const fourDigitNumber = numStr[1] + numStr[2]
+        fourDigitString = `${digits.tripleDigit[parseInt(sixDigitNumber)]} ${
+          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        } ${digits.millions}`
+      }
+
+      strToReturn = `${fourDigitString}`
     }
-    function upToNineDigits(num: number): string {
-      let strToReturn = ''
-      const numStr = num.toString()
-      if (numStr.length > 6 && numStr.length < 10) {
-        let fourDigitString = ''
-        if (numStr.length === 7 && numStr[0] === '1') {
-          fourDigitString = digits.million
-        }
-        if (numStr.length === 7 && numStr[0] !== '1') {
-          const fourDigitNumber = numStr[0]
-          fourDigitString = `${
-            digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
-          } ${digits.millions}`
-          console.log(fourDigitString)
-        }
-        if (numStr.length === 8) {
-          const fourDigitNumber = numStr[0] + numStr[1]
-          fourDigitString = `${
-            digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
-          } ${digits.millions}`
-        }
-        if (numStr.length === 9) {
-          const sixDigitNumber = numStr[0]
-          const fourDigitNumber = numStr[1] + numStr[2]
-          fourDigitString = `${digits.tripleDigit[parseInt(sixDigitNumber)]} ${
-            digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
-          } ${digits.millions}`
-        }
-
-        strToReturn = `${fourDigitString}`
+    return strToReturn
+  }
+  function upToTwelveDigits(num: number): string {
+    let strToReturn = ''
+    const numStr = removePlusMinusSigns(
+      num.toString().includes('.')
+        ? num.toString().split('.')[0]
+        : num.toString()
+    )
+    if (numStr.length > 9 && numStr.length < 13) {
+      let fourDigitString = ''
+      if (numStr.length === 10 && numStr[0] === '1') {
+        fourDigitString = 'ένα δις'
       }
-      return strToReturn
-    }
-    function upToTwelveDigits(num: number): string {
-      let strToReturn = ''
-      const numStr = num.toString()
-      if (numStr.length > 9 && numStr.length < 13) {
-        let fourDigitString = ''
-        if (numStr.length === 10 && numStr[0] === '1') {
-          fourDigitString = 'ένα δις'
-        }
-        if (numStr.length === 10 && numStr[0] !== '1') {
-          const fourDigitNumber = numStr[0]
-          fourDigitString = `${
-            digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
-          } δις`
-          console.log(fourDigitString)
-        }
-        if (numStr.length === 11) {
-          const fourDigitNumber = numStr[0] + numStr[1]
-          fourDigitString = `${
-            digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
-          } δις`
-        }
-        if (numStr.length === 12) {
-          const sixDigitNumber = numStr[0]
-          const fourDigitNumber = numStr[1] + numStr[2]
-          fourDigitString = `${digits.tripleDigit[parseInt(sixDigitNumber)]} ${
-            digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
-          } δις`
-        }
-
-        strToReturn = `${fourDigitString}`
+      if (numStr.length === 10 && numStr[0] !== '1') {
+        const fourDigitNumber = numStr[0]
+        fourDigitString = `${
+          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        } δις`
       }
-      return strToReturn
+      if (numStr.length === 11) {
+        const fourDigitNumber = numStr[0] + numStr[1]
+        fourDigitString = `${
+          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        } δις`
+      }
+      if (numStr.length === 12) {
+        const sixDigitNumber = numStr[0]
+        const fourDigitNumber = numStr[1] + numStr[2]
+        fourDigitString = `${digits.tripleDigit[parseInt(sixDigitNumber)]} ${
+          digits.singleOrDoubleDigit[parseInt(fourDigitNumber)]
+        } δις`
+      }
+
       strToReturn = `${fourDigitString}`
     }
     return strToReturn
@@ -217,8 +188,6 @@ export function Olografos(
     finalString = upToThreeDigits(num).trim()
   }
   if (numStr.length > 3 && numStr.length <= 6) {
-    console.log(upToSixDigits(parseInt(numStr)))
-
     finalString = `${upToSixDigits(parseInt(numStr))} ${upToThreeDigits(
       parseInt(numStr.slice(-3))
     )}`.trim()
