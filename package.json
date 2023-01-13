@@ -1,7 +1,7 @@
 {
   "name": "olografos",
-  "version": "0.1.4",
-  "description": "",
+  "version": "1.1.4",
+  "description": "Μετατροπή αριθμών (και ευρώ) σε μορφή ολογράφως",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "umd:main": "dist/umd/index.js",
@@ -29,17 +29,8 @@
     "dist"
   ],
   "keywords": [
-    "example",
-    "typescript",
-    "npm",
-    "package",
-    "sample",
-    "boilerplate",
-    "starter",
-    "demo",
-    "cjs",
-    "esm",
-    "umd"
+    "ολογράφως",
+    "greek"
   ],
   "author": "Ioannis Mertzanis <imertz@protonmail.com>",
   "license": "MIT",
