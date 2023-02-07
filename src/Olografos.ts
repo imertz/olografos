@@ -44,6 +44,10 @@ export function olografos(
   if (!options.genos) {
     options.genos = 'oudetero'
   }
+
+  if (options.currency) {
+    options.genos = 'oudetero'
+  }
   const numStr = removePlusMinusSigns(
     num.toString().includes('.') ? num.toString().split('.')[0] : num.toString()
   )
